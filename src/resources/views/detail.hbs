@@ -1,0 +1,107 @@
+<!--Column layout-->
+<nav class="navbar navbar-light bg-dark" style="background-color: darkgrey;display:flex ; justify-content: space-around;">
+        <a class="navbar-brand" href="http://localhost:3000/listpassages">Chọn nội dung</a>
+        <a class="navbar-brand" href="http://localhost:3000/multiplechoice">Trắc nghiệm từ</a>
+        <a class="navbar-brand" href="http://localhost:3000/scores">Thông tin điểm số</a>
+        <a class="navbar-brand" href="http://localhost:3000/login">Thoát tài khoản</a>
+</nav>
+<h3 style="color: darkblue; font-style: italic; font-weight: bold;;">CHI TIẾT DỮ LIỆU THU THẬP ĐƯỢC : </h3>
+<p>Sugesstions : Bạn hãy click vào đúng từ cần tra cứu , nghĩa của từ sẽ hiển thị ở cột bên phải</p>
+<style>
+    .column-item{
+        padding : 0 16px;
+        display: flex;
+        flex: 1;
+        height: max-content;
+    }
+    .sidebar-one{
+        flex: 3;
+        height: 2000px;
+        background-color: honeydew;
+        border: 5px solid black;
+        
+    }
+    .sidebar-three{
+        flex: 2;
+        background-color: bisque;
+        height: 2000px;
+        border : 2px solid green;
+        
+    }
+</style>
+
+
+<div class="column-layout"  style="margin-top: 36px; padding: 12px 0; background-color: #fff; display: flex ; height: 2000px;">
+    <div class="column-item sidebar-one" style="display: flex;flex-direction: column  " id="content">
+        {{!-- <h3 >{{this.titlePost}}</h3><br>
+        <p >{{this.leadPostDetail}}</p><br>
+        <p >{{this.fckDetail}}</p><br> --}}
+        <div style="display: inline; font-style: italic; font-weight: bold; font-size: 35px;" >
+            {{#each titlePost}}
+            <span style=" color: chocolate;" id="word1">
+                
+                    {{this}}    
+            </span>
+            {{/each}}
+
+        </div>
+        <br>
+        <br>
+        
+        <div style="display: inline;  font-weight:lighter ; font-size: 25px;">
+            {{#each leadPostDetail}}
+            <span style=" color: darkgray;" id="word2">
+                
+                    {{this}}    
+            </span>
+            {{/each}}
+
+        </div>
+        <div style="display: inline;  font-weight:lighter ; font-size: 15px; ">
+            {{#each fckDetail}}
+            <span style=" color: rgb(90, 79, 243);" id="word3">
+                
+                    {{this}}    
+            </span>
+            {{/each}}
+
+        </div>
+       
+
+    </div>
+    {{!-- <div class="column-item sidebar-two">HoaTran</div> --}}
+    <div class="column-item sidebar-three" id="wordlist"> </div>
+</div>
+<a href="/multiplechoice" class="btn btn-primary" style="text-align: center;">Multiple choice here</a>
+
+<script>
+    $(document).ready(function(){
+        $('#content').click(function(event){
+            const wordChoose = event.target.innerHTML;
+            $("#wordlist").append(wordChoose);
+            const connecturl = "http://localhost:3000/search/"+wordChoose;
+            //wordchoose //word result
+            $.ajax({
+                url:connecturl,
+                type:"GET",
+                async:true,
+                success : function(data){
+                    alert(data.course.wordresult||data.course);
+                    setTimeout(function(){
+                     //Needed to fix front-end later   
+                        $("#wordlist").append(data.course.wordresult||data.course);
+                        $("#wordlist").append('<br/>');
+                    },2000);
+
+                    },
+                error:function(e){
+                    console.log('Error happens in ajax');
+                }
+            })
+            
+
+
+        })
+    })
+    
+</script>

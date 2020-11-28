@@ -1,0 +1,18 @@
+<nav class="navbar navbar-light bg-dark" style="background-color: darkgrey;display:flex ; justify-content: space-around;">
+        <a class="navbar-brand" href="http://localhost:3000/listpassages">Chọn nội dung</a>
+        <a class="navbar-brand" href="http://localhost:3000/multiplechoice">Trắc nghiệm từ</a>
+        <a class="navbar-brand" href="http://localhost:3000/scores">Thông tin điểm số</a>
+        <a class="navbar-brand" href="http://localhost:3000/login">Thoát tài khoản</a>
+</nav>
+<div class="mt4">
+    <h3 style="color: darkblue; font-style: italic; font-weight: bold;;">Hệ thống crawl dữ liệu từ trang tiếng Anh </h3>
+    <form method="GET" action="/listpassages">
+
+        <div class="form-group" style="margin-top: 100px;">
+            <label for="description">Tên liên kết</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name="name" placeholder="e.vnexpress.net">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Lấy dữ liệu</button>
+    </form>
+</div>
