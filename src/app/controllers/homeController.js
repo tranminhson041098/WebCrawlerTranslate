@@ -10,6 +10,8 @@ class HomeController{
       
         console.log('goodbye');
         
+
+        console.log('Hello Miichisoft');
         res.render('home');
     }
 }
