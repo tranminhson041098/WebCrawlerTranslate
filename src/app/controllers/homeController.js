@@ -8,7 +8,7 @@ app.use(cookieParser());
 class HomeController{
     index(req,res,next){
       
-        
+        console.log('hello');
         
         res.render('home');
     }
